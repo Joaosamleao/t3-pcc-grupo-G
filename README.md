@@ -21,25 +21,21 @@ Para viabilizar o roteamento Euleriano (passar por todas as arestas exatamente u
 ### Análise de Saldo dos Vértices
 A diferença matemática entre saídas e entradas (`Saldo = Saídas - Entradas`) revelou as seguintes necessidades:
 
-* **Nós Receptores (Precisam receber arestas):**
-  * **Nó 0:** Saldo +1 (Falta 1 entrada)
-  * **Nó 1:** Saldo +1 (Falta 1 entrada)
-  * **Nó 2:** Saldo +4 (Faltam 4 entradas)
-* **Nós Fornecedores (Precisam enviar arestas):**
-  * **Nó 4:** Saldo -3 (Faltam 3 saídas)
-  * **Nó 5:** Saldo -3 (Faltam 3 saídas)
-* **Nó Balanceado:**
-  * **Nó 3:** Saldo 0 (Entradas = Saídas)
+* **Nós Provedores (Precisam enviar arestas para balancear, saldo negativo):**
+    * **Nó A (Esquerdo):** Saldo -1 (Envia 1, Recebe 2)
+    * **Nó C (Direito):** Saldo -1 (Envia 1, Recebe 2)
+    * **Nó D (Baixo):** Saldo -1 (Envia 1, Recebe 2)
+* **Nós Receptores (Precisam receber arestas para balancear, saldo positivo):**
+    * **Nó B (Topo):** Saldo +1 (Envia 2, Recebe 1)
 
-### A Solução Aplicada
-Para zerar o saldo de todo o sistema e garantir que `Grau de Entrada == Grau de Saída` para todos os nós, foram injetadas 6 novas arestas direcionadas no grafo, partindo dos nós "fornecedores" em direção aos "receptores":
+**A Solução Aplicada**
+Para zerar o saldo de todo o sistema e garantir que `Grau de Entrada == Grau de Saída` para todos os nós, foram injetadas 4 novas arestas direcionadas no grafo, ligando provedores a receptores e criando caminhos de retorno:
 
-* `4 -> 0` (1 aresta)
-* `4 -> 1` (1 aresta)
-* `4 -> 2` (1 aresta)
-* `5 -> 2` (3 arestas paralelas)
+* **C -> A (paralela):** Uma aresta artificial `C -> A` de peso `0` foi adicionada para balancear o Nó C.
+* **D -> B (nova rota):** Uma aresta artificial `D -> B` de peso `0` foi adicionada para balancear o Nó D.
+* **A -> B (paralela):** Duas arestas artificiais `A -> B` de peso `0` foram adicionadas para balancear o Nó A e o Nó B.
 
-**Resultado:** A lista de arestas foi expandida de 11 para 17 arestas totais. Com essa modificação estrutural, o grafo tornou-se fortemente conexo e perfeitamente balanceado, estando apto para a execução de algoritmos de busca de caminhos Eulerianos (como o Algoritmo de Hierholzer).
+**Resultado:** A lista de arestas foi expandida de 6 para **10 arestas totais**. Com essa modificação estrutural, o grafo tornou-se fortemente conexo e perfeitamente balanceado, estando apto para a execução de algoritmos de busca de caminhos Eulerianos (como o Algoritmo de Hierholzer).
 
 ---
 
