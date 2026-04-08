@@ -12,9 +12,7 @@ O programa:
 6. Imprime um circuito euleriano
 7. Calcula o custo total do circuito
 
-# Eulerização Realizada
-
-## Processo de Eulerização do Grafo
+# Processo de Eulerização do Grafo
 
 O grafo original deste projeto consiste em um Grafo Acíclico Direcionado (DAG) composto por 6 vértices (0 a 5) e 11 arestas. Por sua natureza direcional e acíclica, o grafo original não possuía um Circuito Euleriano válido, pois apresentava vértices desbalanceados — ou seja, o grau de entrada (arestas chegando) era diferente do grau de saída (arestas partindo).
 
