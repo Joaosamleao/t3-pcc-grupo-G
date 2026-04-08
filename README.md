@@ -222,3 +222,5 @@ Custo total do circuito: 195
 ---
 
 # Vídeo Explicativo (Link)
+
+https://drive.google.com/file/d/1sK3BRV5rtP2N4RZcmPm2aizh6JlFyW7w/view?usp=drivesdk
